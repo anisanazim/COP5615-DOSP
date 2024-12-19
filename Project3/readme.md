@@ -12,7 +12,7 @@ The specification of the Chord protocol can be found in the paperChord: A Scalab
 Requirements
 You have to implement the network join and routing as described in the Chord paper (Section 4) and encode the simple application that associates a key (same as the ids used in Chord) with a string.  You can change the message type sent and the specific activity as long as you implement it using a similar API to the one described in the paper.
 
-Input: The input provided (as command line to yourproject3.erl) will be of the form:
+Input: The input provided will be of the form:
 
 project3 numNodes  numRequests
 
