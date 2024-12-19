@@ -1,0 +1,149 @@
+syntax = "proto3";
+package messages;
+option go_package = "reddit-clone/engine/messages";
+
+message RegisterAccount {
+    string Username = 1;
+}
+
+message CreateSubreddit {
+    string Name = 1;
+    string Creator = 2;
+}
+
+message JoinSubreddit {
+    string SubredditName = 1;
+    string Username = 2;
+}
+
+message Post {
+    string SubredditName = 1;
+    string Username = 2;
+    string Content = 3;
+}
+
+message Comment {
+    string PostID = 1;
+    optional string ParentCommentID = 2;
+    string Username = 3;
+    string Content = 4;
+}
+
+message PrintComments {
+    string post_id = 1;
+}
+
+message DeleteComment {
+    string PostID = 1;
+    string CommentID = 2;
+    string Username = 3;
+}
+
+message Vote {
+    string PostID = 1;
+    string Username = 2;
+    bool IsUpvote = 3;
+	bool IsComment = 4;
+}
+
+message DirectMessage {
+    string from = 1;
+    string to = 2;
+    string content = 3;
+}
+
+message GetDirectMessages {
+    string username = 1;
+}
+
+message ReplyDirectMessage {
+    string message_id = 1;
+    string content = 2;
+}
+
+message LeaveSubreddit {
+    string subreddit_name = 1;
+    string username = 2;
+}
+
+message SendDirectMessage {
+    string from = 1;
+    string to = 2;
+    string content = 3;
+}
+
+message GetFeed {
+    string username = 1;
+}
+
+message FeedResponse {
+    repeated Post posts = 1;
+}
+
+message UpdateKarma {
+    string username = 1; 
+    int32 amount = 2;    
+}
+
+message GetKarma {
+    string username = 1; 
+}
+
+message Subscribe {
+    string Username = 1; 
+    string SubredditName = 2; 
+}
+
+message Repost {
+    string Username = 1; 
+    string PostID = 2; 
+}
+
+message APIRegisterRequest {
+    string username = 1;
+}
+
+message APICreatePostRequest {
+    string title = 1;
+    string content = 2;
+    string subreddit = 3;
+}
+
+message APIVoteRequest {
+    string post_id = 1;
+    int32 vote = 2;  // 1 for upvote, -1 for downvote
+}
+
+message APICreateCommentRequest {
+    string post_id = 1;
+    string content = 2;
+}
+
+message APICreateSubredditRequest {
+    string name = 1;
+}
+
+message APISendDMRequest {
+    string to_user = 1;
+    string message = 2;
+}
+
+message APIResponse {
+    string message = 1;
+    bool success = 2;
+}
+
+message MetricsResponse {
+    int32 total_users = 1;
+    int32 total_posts = 2;
+    int32 total_comments = 3;
+    int32 total_votes = 4;
+    int32 subreddits_created = 5;
+    int32 subreddit_joins = 6;
+    int32 leave_subreddit_count = 7;
+    int32 send_dm_count = 8;
+    int32 retrieve_feed_count = 9;
+    int32 subscribe_count = 10;
+    int32 repost_count = 11;
+    int32 memory_usage = 12;
+}
